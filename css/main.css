@@ -258,6 +258,8 @@
 }
 .banner .center-wrap .banner-nav>ul>li:last-child{
   border-bottom:none;
+  height: 16.67%;
+  
 }
 .banner .center-wrap .leftbtn{
   position: absolute;
@@ -378,4 +380,18 @@
 .banner .center-wrap .banner-nav .menus-box .menu dl dd{
   line-height: 25px;
   font-size:15px;
+}
+
+.hot-ads{
+  margin:32px 0;
+  
+}
+.hot-ads ul li{
+  float:left;
+  width:264px;
+  height:110px;
+  margin-right: 32px;
+}
+.hot-ads ul li:last-child{
+  margin-right:0;
 }
