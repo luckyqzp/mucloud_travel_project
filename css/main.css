@@ -446,6 +446,10 @@
   float:left;
 }
 
+.common-style .hd em{
+  float:left;
+}
+
 .content-part .hd nav{
   float:right;
   width:474px;
@@ -472,6 +476,24 @@
   color:#20bd9a;
 }
 
+/* 公共特效：鼠标触碰图片，放大图片效果 */
+.content-part img{ 
+  transition: transform 0.4s ease 0s;
+}
+
+.content-part img:hover{
+  transform:scale(1.1);
+}
+.content-part li{
+  overflow:hidden;
+}
+.content-part li .picbox{
+  height:184px;
+  overflow: hidden;
+}
+.content-part .grid{
+  overflow:hidden;
+}
 .common-style .bd {
   padding-top:32px;
 }
@@ -480,7 +502,7 @@
   float:left;
   margin-right:32px;
   margin-bottom: 32px;
-  box-shadow:0 8px 16px 0 rgba(0, 0, 0, 0.08);
+  box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.08);
   background-color:white;
   
 }
@@ -496,7 +518,7 @@
 .common-style .bd>ul>li.big-grid{
   width:560px;
   height:270px;
-  position:relative;
+  position: relative;
 }
 
 .common-style .bd>ul>li .tag{
@@ -509,6 +531,7 @@
   left:0;
   text-align:center;
   line-height:40px;
+  z-index:9999;
 }
 
 .common-style .bd>ul>li.big-grid .info{
@@ -528,6 +551,7 @@
   height:270px; 
 }
 .common-style .bd>ul>li.pro-grid .picbox{
+  overflow: hidden;
   position: relative;
   height:184px;
 }
@@ -571,6 +595,22 @@
   top:118px;
   margin-left:-24px;
 }
+
+
+/* 鼠标触碰mord-grid 盒子之后，iconfont进行蹦跳动画 */
+.content-part .more-grid:hover .iconfont{
+  animation:ud 0.4s ease 0s infinite alternate;
+}
+
+@keyframes ud{
+  form{
+    transform: translateY(-10px);
+  }
+  to{
+    transform: translateY(10px);
+  }
+}
+
 .content-part .more-grid ul{
   margin-top:112px;
   padding-left:40px;
@@ -657,6 +697,7 @@
   float:left;
   width: 120px;
   height:120px;
+  overflow: hidden;
 }
 .ddwl .bd .grid .wordbox{
   float:left;
@@ -757,7 +798,7 @@
 }
 
 .gybzzy .hd nav{
-  float:right;
+
   width:157px;
 }
 
@@ -767,3 +808,59 @@
 .gybzzy .bd .more-grid ul{
   padding-left:67px;
 }
+
+.big-grid.havehover .mask{
+  position: absolute;
+  width: 100%;
+  height:100%;
+  top:0;
+  left:0;
+  background-color:rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity .4s ease 0s;
+  
+}
+
+
+.big-grid.havehover:hover .mask{
+  opacity: 1;
+}
+
+.big-grid.havehover .circle{
+  position: absolute;
+  width:106px;
+  height:106px;
+  border:1px solid #fff;
+  border-radius: 50%;
+  top:-106px;
+  left:50%;
+  margin-left:-53px;
+  color:#fff;
+  box-sizing: border-box;
+  padding-top:25px;
+  font-size:18px;
+  transition: top .5s ease 0s;
+
+}
+
+
+.big-grid.havehover .circle p{
+  text-align: center;
+}
+.big-grid.havehover:hover .circle{
+  top:62px;
+}
+.big-grid.havehover .word{
+  position: absolute;
+  bottom:-100px;
+  left:10px;
+  color:white;
+  transition:bottom .5s ease 0s;
+}
+.big-grid.havehover:hover .word{
+  bottom:30px;
+}
+
+
+
+
