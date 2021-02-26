@@ -9,6 +9,8 @@
     var carousel_list = document.getElementById('carousel_list');
     var left_btn = document.getElementById('left_btn');
     var right_btn = document.getElementById('right_btn');
+    var circle_ol = document.getElementById('circles_ol');
+    var circle_lis = circle_ol.getElementsByTagName('li')
 
     //克隆第一张li
     var clone_li = carousel_list.firstElementChild.cloneNode(true);
@@ -35,6 +37,8 @@
                 idx = 0;
             }, 500);
         }
+        //设置小圆点
+        setCircles();
     }
     // 左按钮的事件监听
     left_btn.onclick = function () {
@@ -48,18 +52,49 @@
             idx = 4;
 
             //小技巧，延时0毫秒非常有用,可以让刚才的瞬移发生之后，再把过渡加上。
-            setTimeout(function(){
+            setTimeout(function () {
                 //加上过渡
                 carousel_list.style.transition = 'transform .5s ease 0s';
                 //动画
                 carousel_list.style.transform = 'translateX(' + -16.66 * 4 + '%)';
-                //改变idx的值
-                idx = 4;
-            },0);
-    }else{
-        idx --;
-        //拉到
-        carousel_list.style.transform = 'translateX(' + -16.66 * idx + '%)';
+
+            }, 0);
+        } else {
+            idx--;
+            //拉到
+            carousel_list.style.transform = 'translateX(' + -16.66 * idx + '%)';
+        }
+        //设置小圆点
+        setCircles();
     }
-}
+    //设置小圆点的current在谁身上，序号为idx的小圆点才有current类名，其他的li都没有类名
+    function setCircles() {
+        //遍历，遍历0、1、2、3、4。每遍历一个数字,都要和idx比一下，如果相等，就把这项设置类名为current,否则去掉类名。
+        for (var i = 0; i <= 4; i++) {
+            //这里的%5非常巧妙，1、2、3、4除以5的余数都是它本身，但是5除以5等于0了。
+            //这里%5的目的就是为了右按钮它有一瞬间，idx会成为5，500毫秒之后才变成为0。
+            if (i == idx % 5) {
+                circle_lis[i].className = 'current';
+            } else {
+                circle_lis[i].className = '';
+            }
+        }
+    }
+
+    //事件委托，小圆点的监听
+    circle_ol.onclick = function (e) {
+        if (e.target.tagName.toLowerCase() == 'li') {
+            //得到li身上的data-n属性,就是n
+            var n = Number(e.target.getAttribute('data-n'));
+
+            //改变idx
+            idx = n;
+
+            //拉动
+            carousel_list.style.transform = 'translateX(' + -16.66 * idx + '%)';
+
+            //调用改变小圆点函数
+            setCircles();
+        }
+    }
 })();
